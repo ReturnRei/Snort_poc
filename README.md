@@ -1,10 +1,12 @@
 # How to?
 
-- Install Docker  
+## This is main, don't do your changes here pls
+
+- Install Docker
 - `git clone https://github.com/ReturnRei/Snort_poc`
-- `./build.sh`  
-- `./run.sh`  
-- `./interact.sh`  
+- `./build.sh`
+- `./run.sh`
+- `./interact.sh`
 
 # Q/A
 

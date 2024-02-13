@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    environment:
+      WEBPASSWORD: "qwertyUwU"
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "8081:80/tcp"
+    volumes:
+      - "./tmp_utils_fuckeries/etc-pihole:/etc/pihole"
+      - ".tmp_utils_fuckeries/etc-dnsmasq.d:/etc/dnsmasq.d"
+    restart: unless-stopped
+    networks:
+      default:
+       ipv4_address: 172.20.0.50
+
+  attacker:
+    tty: true
+    build: ./attacker
+    container_name: attacker
+    networks:
+      default:
+        ipv4_address: 172.20.0.2 
+    dns:
+      - 172.20.0.50 # Pi-hole IP
+
+  snort_box:
+    build: ./snort_box
+    container_name: snort
+    networks:
+      default:
+        ipv4_address: 172.20.0.3 
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+    - "8080:80"
+    networks:
+      default:
+        ipv4_address: 172.20.0.4 
+
+  user:
+    tty: true
+    build: ./user
+    container_name: user
+    networks:
+      default:
+        ipv4_address: 172.20.0.5
+    dns:
+      - 172.20.0.50
+
+networks:
+  default:
+    ipam:
+     config:
+       - subnet: 172.20.0.0/24

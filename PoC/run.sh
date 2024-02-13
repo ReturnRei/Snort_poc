@@ -1,0 +1,1 @@
+docker run -it -e TARGET_VALUE="10.10.10.10" -e DNS_SERVER="10.10.10.10" re_poc

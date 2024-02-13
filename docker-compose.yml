@@ -3,6 +3,7 @@ version: '3.8'
 services:
   pihole:
     image: pihole/pihole:latest
+    container_name: pihole
     environment:
       WEBPASSWORD: "qwertyUwU"
     ports:
@@ -19,6 +20,7 @@ services:
 
   attacker:
     build: ./attacker
+    container_name: attacker
     networks:
       default:
         ipv4_address: 172.20.0.2 
@@ -27,12 +29,14 @@ services:
 
   snort_box:
     build: ./snort_box
+    container_name: snort
     networks:
       default:
         ipv4_address: 172.20.0.3 
 
   nginx:
     build: ./nginx
+    container_name: nginx
     ports:
     - "8080:80"
     networks:
@@ -41,8 +45,10 @@ services:
 
   user:
     build: ./user
+    container_name: user
     networks:
-      - default
+      default:
+        ipv4_address: 172.20.0.5
     dns:
       - 172.20.0.50
 

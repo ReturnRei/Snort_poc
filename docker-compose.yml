@@ -11,14 +11,15 @@ services:
       - "53:53/udp"
       - "8081:80/tcp"
     volumes:
-      - "./etc-pihole:/etc/pihole"
-      - "./etc-dnsmasq.d:/etc/dnsmasq.d"
+      - "./tmp_utils_fuckeries/etc-pihole:/etc/pihole"
+      - ".tmp_utils_fuckeries/etc-dnsmasq.d:/etc/dnsmasq.d"
     restart: unless-stopped
     networks:
       default:
        ipv4_address: 172.20.0.50
 
   attacker:
+    tty: true
     build: ./attacker
     container_name: attacker
     networks:
@@ -44,6 +45,7 @@ services:
         ipv4_address: 172.20.0.4 
 
   user:
+    tty: true
     build: ./user
     container_name: user
     networks:

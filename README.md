@@ -2,6 +2,7 @@
 
 - Install Docker
 - `git clone https://github.com/ReturnRei/Snort_poc`
+- `git checkout -b {{your_super_branch_name}}`
 - `docker compose build` \# Go get some coffee
 - `docker compose up`
 

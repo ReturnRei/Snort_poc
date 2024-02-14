@@ -88,7 +88,7 @@ def main():
     args = parser.parse_args()
     target_ip = args.target
     dns_server_ip = args.dns_server
-    device_setup()
+#    device_setup()
     processes_list = []
     ARPPProcess = Process(target=ARPP,args=(target_ip,dns_server_ip))
     exploitProcess = Process(target=exploit,args=(target_ip,))

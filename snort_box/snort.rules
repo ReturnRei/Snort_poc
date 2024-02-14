@@ -1,0 +1,40 @@
+# Configuration globale
+var HOME_NET  172.20.0.0/24
+var EXTERNAL_NET !172.20.0.0/24
+var DNS_SERVERS $HOME_NET
+var SMTP_SERVERS $HOME_NET
+var HTTP_SERVERS $HOME_NET
+var SQL_SERVERS $HOME_NET
+var TELNET_SERVERS $HOME_NET
+var SNMP_SERVERS $HOME_NET
+
+# Configuration de l'interface et des options de journalisation
+config logdir: /var/log/snort
+
+# Règles pour voir tout le trafic réseau
+alert ip $HOME_NET any -> $EXTERNAL_NET any 
+(
+    msg:"Traffic Detected";
+    sid:1000001;
+)
+alert ip $EXTERNAL_NET any -> $HOME_NET any 
+(
+    msg:"Traffic Detected";
+    sid:1000002;
+)
+
+# Règles pour détecter l'ARP Poisoning
+alert arp any any -> any any 
+(
+    msg:"Possible ARP Poisoning Detected";
+    arp.who-has; 
+    sid:1000003;
+)
+alert arp any any -> any any 
+(
+    msg:"Possible ARP Poisoning Detected";
+    arp.is-at;
+    sid:1000004;
+)
+
+# Autres configurations et règles...

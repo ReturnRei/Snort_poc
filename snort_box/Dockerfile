@@ -42,4 +42,6 @@ COPY ffs.rules /home/snorty
 USER root
 RUN echo 'snorty:snorty' | chpasswd
 CMD ["/usr/local/bin/startup.sh"]
-#RUN snort -c /home/snorty/snort3/etc/snort/snort.lua -i eth0 -R /home/snorty/ffs.rules -l ./ffs.log -A full
+#RUN ["/home/snorty/snort3/bin/snort -A console -q -c /home/snorty/snort3/etc/snort/snort.lua -i eth0 -R /home/snorty/ffs.rules -l ./ffs.log -A full"]
+
+/home/snorty/snort3/bin/snort -A console -q -c /home/snorty/snort3/etc/snort/snort.lua -R /home/snorty/ffs.rules

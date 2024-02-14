@@ -3,6 +3,6 @@ RUN apt update && apt install -y vim python3 iproute2 bind9 curl wget iputils-pi
 RUN apt install -y valgrind procps
 RUN rm /etc/nginx/conf.d/default.conf
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-CMD ["valgrind", "nginx", "-g", "daemon off;"]
+#CMD ["valgrind", "nginx", "-g", "daemon off;"]
 COPY ./poctemp.py /root
 EXPOSE 80

@@ -7,8 +7,8 @@ services:
     environment:
       WEBPASSWORD: "qwertyUwU"
     ports:
-      - "53:53/tcp"
-      - "53:53/udp"
+      #- "53:53/tcp"
+      #- "53:53/udp"
       - "8081:80/tcp"
     volumes:
       - "./tmp_utils_fuckeries/etc-pihole:/etc/pihole"

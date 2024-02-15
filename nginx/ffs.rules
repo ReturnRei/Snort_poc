@@ -1,6 +1,2 @@
-alert ip any any -> any any (msg:"Memory leak detected in request data"; sid:1000001;)
-alert tcp any any -> any any (msg:"Memory leak detected in request data"; sid:1000002;)
-alert icmp any any -> any any (msg:"Memory leak detected in request data"; sid:1000003;)
-alert udp any any -> any any (msg:"Memory leak detected in request data"; sid:1000004;)
-alert dns any any -> any any (msg:"Memory leak detected in request data"; sid:1000005;)
-alert udp 0.0.0.0/24 any -> any 53 (msg:"Detection de contenu specifique"; content:"|41 41 41 41 41 41 41 41 41 41|"; sid:100010;)
+alert udp 0.0.0.0/24 any -> any 53 (msg:"Attempt to overflow buffer with common A pattern"; content:"|41 41 41 41 41 41 41 41 41 41|"; sid:100010;)
+alert udp 0.0.0.0/24 any -> any 53 (msg:"Attempt to overflow buffer with common A pattern"; content:"|AAAAAAAAA|"; sid:100010;)

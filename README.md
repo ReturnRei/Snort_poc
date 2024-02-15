@@ -20,11 +20,11 @@
 - `docker exec -it [nginx | attacker | user] bash`
 
 - ## In nginx, run:
-this command will allow you to setup snort, and the rules you import in it.
 - snort: `/home/snorty/snort3/bin/snort -c /home/snorty/snort3/etc/snort/snort.lua -R /home/snorty/ffs.rules -A alert_full -i eth0`
-This command will run the vulnerability on local.
-- Local PoC: `source runpoc.sh`
+- - this command will allow you to setup snort, and the rules you import in it.
 
+- Local PoC: `source runpoc.sh`
+- - This command will run the vulnerability on local.
 - ## in user, run:
 This command will curl every second the server, and trigger the vulnerability on nginx server
 - `./ucurl.sh`
@@ -32,7 +32,7 @@ This command will curl every second the server, and trigger the vulnerability on
 ## Rules
 ```
 alert udp 0.0.0.0/24 any -> any 53 (msg:"Attempt to overflow buffer with common A pattern"; content:"|41 41 41 41 41 41 41 41 41 41|"; sid:100010;)
-alert udp 0.0.0.0/24 any -> any 53 (msg:"Attempt to overflow buffer with common A pattern"; content:"|AAAAAAAAA |"; sid:100010;)
+alert udp 0.0.0.0/24 any -> any 53 (msg:"Attempt to overflow buffer with common A pattern"; content:"|AAAAAAAAA|"; sid:100010;)
 ```
 Why? Sending  AAAAA is common in memory corruption, it is a de facto standard everyone uses as seeing 0x41414141 is easy to see in memory.
 

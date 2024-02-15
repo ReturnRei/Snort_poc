@@ -44,7 +44,5 @@ alert udp 0.0.0.0/24 any -> any 53 (msg:"Attempt to overflow buffer with common 
 Why? Sending  AAAAA is common in memory corruption, it is a de facto standard everyone uses as seeing 0x41414141 is easy to see in memory.
 
 ## What you can do !
+- You can run poc.py on the attacker docker. The script make ARP poinsoning, and forged DNS packets. It will allow the attacker to be in an MiTM. Then you might be able to modify the page content recieve by the victime for exemple ! 
 - Add new snort detection rules on the file ./nginx/ffs.rules
-- Trigger the CVE directly from the attacker machine, with poc.py. It will make a MiTM !
-- Create a MiTM and modify the page recieve by the victim.
-

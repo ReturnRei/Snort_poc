@@ -6,6 +6,7 @@ RUN apt install -y dnsutils
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 COPY ./poctemp.py ./startup.sh /root/
 EXPOSE 80
+RUN chmod +x /root/startup.sh
 #RUN ulimit -n 1024
 #CMD ["valgrind", "nginx", "-g", "daemon off;"]
 CMD ["/root/startup.sh"]

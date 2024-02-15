@@ -16,6 +16,7 @@ services:
     volumes:
       - "./tmp_utils_fuckeries/etc-pihole:/etc/pihole"
       - ".tmp_utils_fuckeries/etc-dnsmasq.d:/etc/dnsmasq.d"
+    mac_address: 02:42:ac:14:00:32
     restart: unless-stopped
     networks:
       net1:
@@ -37,12 +38,17 @@ services:
     networks:
       net1:
         ipv4_address: 172.20.0.3 
+    cap_add:
+      - NET_RAW 
+      - NET_ADMIN
+    privileged: true
 
   nginx:
     build: ./nginx
     container_name: nginx
     ports:
     - "8080:80"
+    mac_address: 02:42:ac:14:00:04
     networks:
       net1:
         ipv4_address: 172.20.0.4 
@@ -50,9 +56,8 @@ services:
       nofile:
         soft: 1000
         hard: 1000
-      dns:
+    dns:
       - 172.20.0.50 # Pi-hole IP
-      mac_address: 02:42:ac:14:00:04
 
 
   user:

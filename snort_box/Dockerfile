@@ -3,7 +3,7 @@ CMD ["bash"]
 WORKDIR /root
 RUN /bin/sh -c "apt-get update && apt-get install -y autoconf automake     bison     build-essential     cmake     curl     flex     git     libdumbnet-dev     libhwloc-dev     libhyperscan-dev     libluajit-5.1-dev     liblzma-dev     libpcap-dev     libpcre3-dev     libssl-dev     man-db     pkg-config     vim     zlib1g-dev &&     apt-get clean &&     git clone "https://github.com/snort3/libdaq.git" &&     cd libdaq &&     ./bootstrap &&     ./configure &&     make install &&     ldconfig &&     cd ../ &&     rm -rf libdaq &&     useradd -ms /bin/bash snorty && usermod -aG sudo snorty"
 RUN echo 'snorty:snorty' | chpasswd
-USER snorty
+#USER snorty
 WORKDIR /home/snorty
 RUN /bin/sh -c 'mkdir -p examples snort3 src .vim/syntax .vim/colors && \
     cd src && \
@@ -22,3 +22,8 @@ RUN /bin/sh -c 'mkdir -p examples snort3 src .vim/syntax .vim/colors && \
     curl -LO "https://snort.org/downloads/community/snort3-community-rules.tar.gz" && \
     tar xzf snort3-community-rules.tar.gz snort3-community-rules/snort3-community.rules --strip=1 && \
     rm snort3-community-rules.tar.gz'
+
+RUN apt install -y iproute2
+COPY ./ffs.rules ./cmd.sh /home/snorty/
+CMD while sleep 10; do echo I am snort; done
+

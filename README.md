@@ -1,4 +1,7 @@
-# How to?
+# How it work?
+![poc cve](https://github.com/ReturnRei/Snort_poc/assets/91879564/b05da170-cca2-46bd-a4d8-9d57fe4d6f8e)
+
+# How to Run it?
 
 - ## Install Docker
 - `git clone https://github.com/ReturnRei/Snort_poc`
@@ -27,4 +30,7 @@ To do
 - Check snort works
 - Snort rules for mitm, arp poisoning, shellcode with AAAAAAAA shellcode
 - Does the poc even work? Corrupt memory? PROOF  
+
+
+
 

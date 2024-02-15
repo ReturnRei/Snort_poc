@@ -8,26 +8,26 @@
 # What is this repo ? 
  - This github repo is a lab that contain all the resources to trigger the vulnerability, and setup snort rules to stop the attack.
 
-# How to deploy the lab ?
+# How to deploy the lab and execute the exploit ?
 - ## Install Docker
-- 
 - `git clone https://github.com/ReturnRei/Snort_poc`
 - `git checkout -b {{your_super_branch_name}}`
 - `docker compose build` \# Go get some coffee
 - `docker compose up`
 
-- ## Run terminals
+- ## Connect to terminals
 - `docker exec -it [nginx | attacker | user] bash`
 
 - ## In nginx, run: 
+this command will allow you to setup snort, and the rules you import in it.
 - - snort: `/home/snorty/snort3/bin/snort -c /home/snorty/snort3/etc/snort/snort.lua -R /home/snorty/ffs.rules -A alert_full -i eth0`
+This command will run the vulnerability on local.
 - - Local PoC: `source runpoc.sh`
 
 - ## in user, run:
+This command will curl every second the server, and trigger the vulnerability on nginx server
 - - `.\ucurl.sh`
 
-# Vuln proof:
-url
 
 
 ## More

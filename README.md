@@ -1,9 +1,16 @@
+# CVE-2021-23017 Nginx 0.6.18 - 1.20.0 Memory Overwrite Vulnerability Base Score: 7.7 HIGH
 # How it work?
+- The vulnerability is betwin the nginx server and the dns resolver.
+- It trigger when the PoC run, and a victim connect to the server.
+- this vulnerability is a Memory overwrite. The attacker can execute malicious code on the server, overwrite the arp list by arp poisoning, resulting in a MiTM.
 ![poc cve](https://github.com/ReturnRei/Snort_poc/assets/91879564/b05da170-cca2-46bd-a4d8-9d57fe4d6f8e)
 
-# How to Run it?
+# What is this repo ? 
+ - This github repo is a lab that contain all the resources to trigger the vulnerability, and setup snort rules to stop the attack.
 
+# How to deploy the lab ?
 - ## Install Docker
+- 
 - `git clone https://github.com/ReturnRei/Snort_poc`
 - `git checkout -b {{your_super_branch_name}}`
 - `docker compose build` \# Go get some coffee

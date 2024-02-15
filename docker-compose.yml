@@ -18,7 +18,7 @@ services:
       - ".tmp_utils_fuckeries/etc-dnsmasq.d:/etc/dnsmasq.d"
     restart: unless-stopped
     networks:
-      default:
+      net1:
        ipv4_address: 172.20.0.50
 
   attacker:
@@ -26,7 +26,7 @@ services:
     build: ./attacker
     container_name: attacker
     networks:
-      default:
+      net1:
         ipv4_address: 172.20.0.2 
     dns:
       - 172.20.0.50 # Pi-hole IP
@@ -35,7 +35,7 @@ services:
     build: ./snort_box
     container_name: snort
     networks:
-      default:
+      net1:
         ipv4_address: 172.20.0.3 
 
   nginx:
@@ -44,12 +44,15 @@ services:
     ports:
     - "8080:80"
     networks:
-      default:
+      net1:
         ipv4_address: 172.20.0.4 
     ulimits:
       nofile:
         soft: 1000
         hard: 1000
+      dns:
+      - 172.20.0.50 # Pi-hole IP
+      mac_address: 02:42:ac:14:00:04
 
 
   user:
@@ -57,13 +60,13 @@ services:
     build: ./user
     container_name: user
     networks:
-      default:
+      net1:
         ipv4_address: 172.20.0.5
     dns:
       - 172.20.0.50
 
 networks:
-  default:
+  net1:
     ipam:
      config:
        - subnet: 172.20.0.0/24

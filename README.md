@@ -30,8 +30,7 @@ This command will curl every second the server, and trigger the vulnerability on
 - `./ucurl.sh`
 
 - ## If you need to reload the Lab:
-- Run commands: 
-- - `docker compose down \
+- Run commands: `docker compose down \
     docker compose build \
     docker compose up`
 

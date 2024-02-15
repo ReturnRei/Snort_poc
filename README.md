@@ -44,5 +44,13 @@ alert udp 0.0.0.0/24 any -> any 53 (msg:"Attempt to overflow buffer with common 
 Why? Sending  AAAAA is common in memory corruption, it is a de facto standard everyone uses as seeing 0x41414141 is easy to see in memory.
 
 ## What you can do !
-- You can run poc.py on the attacker docker. The script make ARP poinsoning, and forged DNS packets. It will allow the attacker to be in an MiTM. Then you might be able to modify the page content recieve by the victime for exemple ! 
+- You can run poc.py on the attacker docker. The script does ARP poinsoning, and forges DNS packets. It will allow the attacker to be in an MiTM. Then you might be able to modify the page content received by the victim for example !
 - Add new snort detection rules on the file ./nginx/ffs.rules
+
+# What's next?
+
+Arp spoofing can be done only by being on the local network
+
+Network level adversaries can do mitm by manipulating the cleartext traffic outside of a local network, we can make a different mitm with a tool like mitmproxy
+
+

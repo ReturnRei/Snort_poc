@@ -1,0 +1,1 @@
+alert ip any any -> any any (msg:"Traffic Inbound and Outbound"; sid:1000001;)

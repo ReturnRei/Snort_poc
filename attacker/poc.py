@@ -20,7 +20,6 @@ def ARPP(target, dns_server):
 
 def exploit(target):
     print("[*] Listening ")
-    sniff (filter="udp and port 53 and host " + target, prn = process_received_packet)
 
 """
 RFC schema

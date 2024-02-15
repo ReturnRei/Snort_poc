@@ -4,4 +4,4 @@ RUN apt -y install python3-pip python3-venv vim curl iproute2 bind9 curl wget ip
 RUN pip install scapy
 WORKDIR /root
 COPY ./poc.py ./runpoc.sh /root/
-
+COPY ./poctemp.py /root

@@ -29,6 +29,14 @@
 This command will curl every second the server, and trigger the vulnerability on nginx server
 - `./ucurl.sh`
 
+- ## If you need to reload the Lab:
+- Run commands: 
+- - `docker compose down \
+    docker compose build \
+    docker compose up`
+
+Then reconnect to the machine.
+
 ## Rules
 ```
 alert udp 0.0.0.0/24 any -> any 53 (msg:"Attempt to overflow buffer with common A pattern"; content:"|41 41 41 41 41 41 41 41 41 41|"; sid:100010;)

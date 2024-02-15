@@ -1,3 +1,6 @@
+WIP in the context of a school presentation
+As of now don't rely on it blindly
+
 # CVE-2021-23017 Nginx 0.6.18 - 1.20.0 Memory Overwrite Vulnerability Base Score: 7.7 HIGH
 # How it work?
 - The vulnerability is between the nginx server and the dns resolver.

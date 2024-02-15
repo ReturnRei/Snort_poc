@@ -28,15 +28,11 @@ This command will run the vulnerability on local.
 This command will curl every second the server, and trigger the vulnerability on nginx server
 - - `.\ucurl.sh`
 
+## What you can do !
+- - Add new snort detection rules on the file ./nginx/ffs.rules
+- - Trigger the CVE directly from the attacker machine, with poc.py. It will make a MiTM ! 
+- - Create a MiTM and modify the page recieve by the victim.
 
-
-## More
-- Get a shell on the {{whatever}} container `docker exec -it nginx bash`
-
-To do 
-- Check snort works
-- Snort rules for mitm, arp poisoning, shellcode with AAAAAAAA shellcode
-- Does the poc even work? Corrupt memory? PROOF  
 
 
 

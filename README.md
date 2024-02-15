@@ -32,6 +32,7 @@ This command will curl every second the server, and trigger the vulnerability on
 ## Rules
 ```
 alert udp 0.0.0.0/24 any -> any 53 (msg:"Attempt to overflow buffer with common A pattern"; content:"|41 41 41 41 41 41 41 41 41 41|"; sid:100010;)
+alert udp 0.0.0.0/24 any -> any 53 (msg:"Attempt to overflow buffer with common A pattern"; content:"|AAAAAAAAA |"; sid:100010;)
 ```
 Why? Sending  AAAAA is common in memory corruption, it is a de facto standard everyone uses as seeing 0x41414141 is easy to see in memory.
 

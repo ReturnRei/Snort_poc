@@ -31,13 +31,6 @@ services:
     dns:
       - 172.20.0.50 # Pi-hole IP
 
-  snort_box:
-    build: ./snort_box
-    container_name: snort
-    networks:
-      default:
-        ipv4_address: 172.20.0.3 
-
   nginx:
     build: ./nginx
     container_name: nginx
@@ -50,6 +43,11 @@ services:
       nofile:
         soft: 1000
         hard: 1000
+    cap_add:
+      - NET_RAW
+      - NET_ADMIN
+    privileged: true
+
 
 
   user:
